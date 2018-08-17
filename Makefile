@@ -8,7 +8,7 @@
 TIMEOUT := 60
 
 # union for 'make test'
-UNION := functional docker crio docker-compose docker-stability openshift kubernetes swarm cri-containerd
+UNION := functional docker crio docker-compose docker-stability openshift kubernetes swarm cri-containerd shimv2
 
 # skipped test suites for docker integration tests
 SKIP :=
@@ -76,6 +76,10 @@ swarm:
 cri-containerd:
 	bash -f .ci/install_cri_containerd.sh
 	bash integration/containerd/cri/integration-tests.sh
+
+shimv2:
+	bash -f .ci/install_cri_containerd.sh
+	bash integration/containerd-shimv2/cri/integration-tests.sh
 
 log-parser:
 	make -C cmd/log-parser
